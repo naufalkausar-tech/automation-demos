@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>بحث المكتبة · Library search</title>
+<style>
+  :root {
+    --bg: #f6f4ef; --card: #ffffff; --ink: #1f2328; --muted: #5d6470; --line: #e3dfd6;
+    --accent: #0f6e5c; --accent-soft: #e2f1ec; --warn-bg: #fff4d6; --warn-ink: #6b4e00;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #15181c; --card: #1e2227; --ink: #e8e6e1; --muted: #a2a9b3; --line: #30353c;
+      --accent: #5cc3a8; --accent-soft: #1f3a33; --warn-bg: #3a3014; --warn-ink: #f3d98a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.6 "Noto Naskh Arabic", "Segoe UI", Tahoma, "Geeza Pro", Arial, sans-serif;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 16px 16px 48px; }
+  h1 { font-size: 1.35rem; margin: 8px 0 2px; }
+  .sub { color: var(--muted); margin: 0 0 14px; font-size: .92rem; }
+  .notice { background: var(--warn-bg); color: var(--warn-ink); border-radius: 10px; padding: 8px 12px; margin: 8px 0 12px; font-size: .9rem; }
+  .notice:empty { display: none; }
+  form { display: flex; gap: 8px; position: sticky; top: 0; background: var(--bg); padding: 8px 0; z-index: 1; }
+  input[type=search] {
+    flex: 1; min-width: 0; font: inherit; padding: 12px 14px; border-radius: 12px;
+    border: 1px solid var(--line); background: var(--card); color: var(--ink);
+  }
+  input[type=search]:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  button { font: inherit; padding: 0 18px; border: 0; border-radius: 12px; background: var(--accent); color: #fff; cursor: pointer; }
+  .status { color: var(--muted); font-size: .9rem; margin: 6px 2px 12px; min-height: 1.4em; }
+  .expanded { color: var(--muted); font-size: .85rem; margin: -6px 2px 12px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; margin-bottom: 12px; }
+  .card h2 { font-size: 1.08rem; margin: 0; }
+  .meta { color: var(--muted); font-size: .9rem; margin: 2px 0 8px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .badge { font-size: .82rem; padding: 2px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+  .desc { margin: 0 0 8px; font-size: .92rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .why { font-size: .84rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .chip { border: 1px dashed var(--line); border-radius: 8px; padding: 1px 8px; color: var(--ink); }
+  footer { color: var(--muted); font-size: .8rem; margin-top: 24px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>ابحث في كتب المكتبة <span class="sub">· Library search</span></h1>
+  <p class="sub">اكتب موضوعاً أو عنواناً أو اسم مؤلف، بالعربية أو بالإنجليزية. تظهر الكتب المتوفرة على الرفوف فقط.</p>
+  <div class="notice" id="notice">{{NOTICE}}</div>
+  <form id="form" role="search">
+    <input type="search" id="q" name="q" dir="auto" autocomplete="off" maxlength="200" placeholder="مثال: تنمية ذاتية، تاريخ الأندلس، Sherlock Holmes" aria-label="بحث">
+    <button type="submit">بحث</button>
+  </form>
+  <div class="status" id="status" aria-live="polite"></div>
+  <div class="expanded" id="expanded"></div>
+  <section id="results"></section>
+  <footer id="footer"></footer>
+</main>
+<script>
+const FIELD = { title: "العنوان", author: "المؤلف", category: "التصنيف", description: "الوصف" };
+const $ = (id) => document.getElementById(id);
+let timer = null, seq = 0;
+
+function el(tag, cls, text) {
+  const node = document.createElement(tag);
+  if (cls) node.className = cls;
+  if (text !== undefined) { node.textContent = text; node.dir = "auto"; }
+  return node;
+}
+
+function card(book) {
+  const c = el("article", "card");
+  c.append(el("h2", "", book.title));
+  c.append(el("div", "meta", [book.author, book.category].filter(Boolean).join(" · ")));
+  const badges = el("div", "badges");
+  if (book.shelf) badges.append(el("span", "badge", "الرف: " + book.shelf));
+  badges.append(el("span", "badge", "متاح: " + book.copies_available));
+  c.append(badges);
+  if (book.description) c.append(el("p", "desc", book.description));
+  const why = el("div", "why");
+  why.append(el("span", "", "لماذا ظهر؟"));
+  if (!book.why.length) why.append(el("span", "chip", "تشابه في الكتابة"));
+  for (const w of book.why) {
+    const where = w.fields.map((f) => FIELD[f] || f).join("، ");
+    const via = w.synonym_of ? " · مرادف لـ «" + w.synonym_of + "»" : "";
+    const chip = el("span", "chip", w.term + " (" + where + ")" + via);
+    chip.dir = "rtl";
+    why.append(chip);
+  }
+  c.append(why);
+  return c;
+}
+
+function render(data) {
+  const box = $("results");
+  box.replaceChildren(...data.results.map(card));
+  const inv = data.inventory;
+  $("footer").textContent = "المخزون: " + inv.source + " · العناوين: " + inv.titles + " · المتوفر حالياً: " + inv.in_stock;
+  $("expanded").textContent = data.expanded.length
+    ? "بحثنا أيضاً عن: " + [...new Set(data.expanded.map((e) => e.to))].join("، ")
+    : "";
+  if (!data.query) { $("status").textContent = ""; return; }
+  let msg = data.results.length ? "النتائج المتوفرة: " + data.total : "لا توجد نتائج متوفرة لهذا البحث";
+  if (data.hidden_out_of_stock) msg += " · مطابقة لكنها معارة حالياً: " + data.hidden_out_of_stock;
+  $("status").textContent = msg;
+}
+
+async function run(q) {
+  const mine = ++seq;
+  try {
+    const res = await fetch("api/search?limit=20&q=" + encodeURIComponent(q));
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    if (mine !== seq) return;
+    render(data);
+    history.replaceState(null, "", q ? "?q=" + encodeURIComponent(q) : location.pathname);
+  } catch (err) {
+    if (mine === seq) $("status").textContent = "تعذر البحث الآن، حاول مرة أخرى.";
+  }
+}
+
+$("q").addEventListener("input", (e) => { clearTimeout(timer); timer = setTimeout(() => run(e.target.value.trim()), 250); });
+$("form").addEventListener("submit", (e) => { e.preventDefault(); clearTimeout(timer); run($("q").value.trim()); });
+const start = new URLSearchParams(location.search).get("q") || "";
+$("q").value = start;
+run(start);
+</script>
+</body>
+</html>

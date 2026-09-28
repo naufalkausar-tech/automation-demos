@@ -1,0 +1,15 @@
+{
+  "sources": [
+    {
+      "competitor": "souq-demo.test (synthetic)",
+      "urls": ["https://souq-demo.test/ar/oud.html"],
+      "card": "div.product-card",
+      "name": "h2.title",
+      "price": "span.price-now",
+      "availability": "span.stock",
+      "link": "a.product-link@href",
+      "next": "a.next",
+      "max_pages": 5
+    }
+  ]
+}

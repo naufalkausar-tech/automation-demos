@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; font-src data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex, nofollow">
+<title>تقرير الأداء الربعي — الربع الثالث ٢٠٢٦</title>
+<style>
+:root { --primary: #0F4C5C; --on-primary: #FFFFFF; --accent: #E9A23B; --text: #1F2933; --bg: #FFFFFF; --surface: #F2F6F7; }
+
+body { font-family: Tahoma, 'Segoe UI', Arial, 'Noto Naskh Arabic', sans-serif; }
+
+@page { size: A4; margin: 12mm 0; }
+@page :first { margin-top: 0; }  /* the header band runs to the top edge; later pages keep a margin */
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--text); font-size: 11pt; line-height: 1.65; overflow-wrap: break-word;
+       -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { width: 210mm; margin: 0 auto; background: var(--bg); }
+.sample { margin: 0; padding: 2mm 16mm; background: #FFF4CC; color: #6B5000; border-bottom: 0.3mm solid #E8D48A;
+          font-size: 9pt; text-align: center; }
+.masthead { display: flex; align-items: center; gap: 7mm; padding: 10mm 16mm 8mm; }
+.band .masthead { background: var(--primary); color: var(--on-primary); border-bottom: 2mm solid var(--accent); }
+.minimal .masthead { border-bottom: 0.7mm solid var(--accent); }
+.masthead > div { min-width: 0; }
+.logo { flex: none; width: 24mm; height: 24mm; object-fit: contain; background: #FFFFFF; border-radius: 3mm; padding: 1.5mm; }
+.brand { margin: 0; font-size: 10pt; font-weight: bold; opacity: 0.9; }
+.minimal .brand { color: var(--primary); }
+.tagline { margin: 0; font-size: 9pt; opacity: 0.85; }
+h1 { margin: 1mm 0; font-size: 20pt; line-height: 1.4; }
+.minimal h1 { color: var(--primary); }
+.meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4mm; margin: 6mm 16mm 0;
+        padding: 3.5mm 5mm; background: var(--surface); border-radius: 2mm; }
+.meta dt { font-size: 8.5pt; opacity: 0.75; }
+.meta dd { margin: 0; font-weight: bold; }
+section { margin: 6mm 16mm 0; }
+h2 { margin: 0 0 2.5mm; padding-inline-start: 3mm; border-inline-start: 1.2mm solid var(--accent);
+     color: var(--primary); font-size: 13pt; line-height: 1.5; break-after: avoid; }
+p { margin: 0 0 2mm; }
+table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 10pt; }  /* never wider than A4 */
+col.num { width: 12mm; }
+col.label { width: 26%; }
+col.value { width: 20%; }
+th { padding: 2mm 3mm; background: var(--primary); color: var(--on-primary); text-align: start; }
+td { padding: 2mm 3mm; border-bottom: 0.3mm solid #D9DEE3; vertical-align: top; }
+tr { break-inside: avoid; }
+tbody tr:nth-child(even) td { background: var(--surface); }
+td.num { color: var(--primary); font-weight: bold; white-space: nowrap; }
+td.value { font-weight: bold; }
+ol { margin: 0; padding-inline-start: 7mm; }
+.digits-arabic ol { list-style-type: arabic-indic; }
+li { margin-bottom: 1.5mm; }
+footer { display: flex; justify-content: space-between; gap: 6mm; margin: 8mm 16mm 0; padding: 3mm 0 6mm;
+         border-top: 0.3mm solid #D9DEE3; font-size: 8.5pt; opacity: 0.8; }
+.toolbar { position: sticky; top: 0; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+           padding: 10px 16px; background: #FFFFFF; border-bottom: 1px solid #D9DEE3; font-size: 14px; }
+.toolbar input { flex: 1 1 260px; min-width: 0; padding: 7px 9px; border: 1px solid #C5CCD3; border-radius: 6px;
+                 direction: ltr; font: inherit; }
+.toolbar button, .toolbar a { padding: 7px 14px; border: 0; border-radius: 6px; background: var(--primary);
+                              color: var(--on-primary); font: inherit; text-decoration: none; cursor: pointer; }
+.toolbar .notice { flex-basis: 100%; margin: 0; color: #5B6770; font-size: 12px; }
+body.view { background: #E9ECEF; }
+.view .page { margin: 16px auto; box-shadow: 0 1px 8px rgba(0, 0, 0, 0.12); }
+@media screen and (max-width: 820px) {  /* phones, web view only: the PNG is shot at 794px and must keep A4 layout */
+  .view .page { width: auto; margin: 0; }
+  .view .masthead, .view .meta, .view section, .view footer { margin-inline: 0; padding-inline: 16px; }
+  .view .meta { grid-template-columns: 1fr; }
+}
+@media print {
+  .toolbar { display: none; }
+  body.view { background: var(--bg); }
+  .view .page { margin: 0; box-shadow: none; }
+}
+</style>
+</head>
+<body class="band digits-arabic">
+<main class="page">
+<p class="sample">نموذج تجريبي — جميع البيانات وهمية لأغراض العرض فقط · SAMPLE / DEMO DATA</p>
+<header class="masthead">
+<img class="logo" src="data:image/png;base64,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" alt="مؤسسة تجريبية (Demo Co.)">
+<div>
+<p class="brand">مؤسسة تجريبية <bdi dir="ltr">(Demo Co.)</bdi></p>
+<h1>تقرير الأداء الربعي — الربع الثالث ٢٠٢٦</h1>
+<p class="tagline">علامة وهمية لأغراض العرض فقط · <bdi dir="ltr">Fictional brand, demo only</bdi></p>
+</div>
+</header>
+<dl class="meta"><div><dt>الجهة</dt><dd>فرع تجريبي <bdi dir="ltr">(Demo Branch)</bdi></dd></div><div><dt>تاريخ التقرير</dt><dd>٢٨ سبتمبر ٢٠٢٦</dd></div><div><dt>إعداد</dt><dd>فريق التحليل التجريبي</dd></div></dl>
+<section>
+<h2>الملخص التنفيذي</h2>
+<p dir="auto">يعرض هذا التقرير النموذجي أداء الفرع خلال الفترة من ١ يوليو إلى ٣٠ سبتمبر ٢٠٢٦، وجميع الأرقام فيه وهمية لأغراض العرض فقط.</p>
+<p dir="auto">ارتفعت الإيرادات بنسبة ١٢٪ مقارنة بالربع الثاني، مدفوعةً بزيادة عدد الطلبات عبر المتجر الإلكتروني وتحسّن زمن التوصيل.</p>
+<p dir="auto"><bdi dir="ltr">The figures below mix Arabic-Indic and Latin digits on purpose, to show that both render correctly inside right-to-left text</bdi>.</p>
+</section>
+<section>
+<h2>المؤشرات الرئيسية</h2>
+<table>
+<colgroup><col class="num"><col class="label"><col class="value"><col></colgroup>
+<thead><tr><th>م</th><th>البند</th><th>القيمة</th><th>ملاحظات</th></tr></thead>
+<tbody>
+<tr><td class="num">١</td><td>إجمالي الإيرادات</td><td class="value"><bdi>١٬٢٤٥٬٠٠٠ ر.س</bdi></td><td>+١٢٪ مقارنة بالربع الثاني</td></tr>
+<tr><td class="num">٢</td><td>عدد الطلبات</td><td class="value"><bdi>٣٬٨٤٠</bdi></td><td>بمتوسط ٤٢ طلبًا يوميًا</td></tr>
+<tr><td class="num">٣</td><td>متوسط قيمة الطلب</td><td class="value"><bdi><bdi dir="ltr">324.20 SAR</bdi></bdi></td><td>أعلى من المستهدف <bdi dir="ltr">(300 SAR)</bdi></td></tr>
+<tr><td class="num">٤</td><td>نسبة رضا العملاء</td><td class="value"><bdi>٩٤٪</bdi></td><td>استبيان شمل ٥١٢ عميلًا بين ١ و١٥ سبتمبر ٢٠٢٦</td></tr>
+<tr><td class="num">٥</td><td>متوسط زمن التوصيل</td><td class="value"><bdi>٢٫٣ يوم</bdi></td><td>انخفاض من ٣٫١ أيام في الربع السابق</td></tr>
+<tr><td class="num">٦</td><td>العملاء الجدد</td><td class="value"><bdi>1,120</bdi></td><td>حملة ١–١٥ سبتمبر ٢٠٢٦</td></tr>
+</tbody>
+</table>
+</section>
+<section>
+<h2>التوصيات</h2>
+<ol>
+<li>توسيع ساعات خدمة العملاء إلى ١٠ مساءً خلال موسم نهاية العام.</li>
+<li>مراجعة أسعار الشحن للطلبات التي تقل عن ١٥٠ ر.س قبل ١ نوفمبر ٢٠٢٦.</li>
+<li>إطلاق برنامج ولاء تجريبي لأفضل ٢٠٪ من العملاء وقياس أثره في الربع الرابع.</li>
+</ol>
+</section>
+<footer><span>مؤسسة تجريبية <bdi dir="ltr">(Demo Co.)</bdi> جهة وهمية وجميع الأرقام نموذجية · <bdi dir="ltr">SAMPLE / DEMO DATA</bdi></span><span>٢٨ سبتمبر ٢٠٢٦</span></footer>
+</main>
+</body>
+</html>

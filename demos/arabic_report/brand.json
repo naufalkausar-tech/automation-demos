@@ -1,0 +1,17 @@
+{
+  "name": "مؤسسة تجريبية (Demo Co.)",
+  "tagline": "علامة وهمية لأغراض العرض فقط · Fictional brand, demo only",
+  "footer": "مؤسسة تجريبية (Demo Co.) جهة وهمية وجميع الأرقام نموذجية · SAMPLE / DEMO DATA",
+  "logo": "logo.png",
+  "font_stack": "Tahoma, 'Segoe UI', Arial, 'Noto Naskh Arabic', sans-serif",
+  "colors": {
+    "primary": "#0F4C5C",
+    "on_primary": "#FFFFFF",
+    "accent": "#E9A23B",
+    "text": "#1F2933",
+    "background": "#FFFFFF",
+    "surface": "#F2F6F7"
+  },
+  "layout": "band",
+  "digits": "arabic"
+}

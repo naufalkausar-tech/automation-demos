@@ -1,0 +1,18 @@
+{
+  "sources": [
+    {
+      "competitor": "books.toscrape.com (sandbox)",
+      "urls": [
+        "https://books.toscrape.com/catalogue/category/books/mystery_3/index.html",
+        "https://books.toscrape.com/catalogue/category/books/travel_2/index.html"
+      ],
+      "card": "article.product_pod",
+      "name": "h3 a@title",
+      "price": "p.price_color",
+      "availability": "p.availability",
+      "link": "h3 a@href",
+      "next": "li.next a",
+      "max_pages": 2
+    }
+  ]
+}

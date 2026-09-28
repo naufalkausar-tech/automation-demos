@@ -1,0 +1,5 @@
+﻿sku,name,current_price,new_price,change_pct,reason
+DEMO-BK-001,Sharp Objects (Paperback),49.99,47.82,-4.34,lower (lowest usable competitor books.toscrape.com (sandbox) at 47.82)
+DEMO-BK-005,Most Wanted,39.00,40.00,2.56,raise to the margin floor 40.00 (lowest usable competitor books.toscrape.com (sandbox) at 35.28)
+DEMO-BK-009,The Great Railway Bazaar,29.99,30.54,1.83,raise (lowest usable competitor books.toscrape.com (sandbox) at 30.54)
+DEMO-BK-010,A Year in Provence,59.00,56.88,-3.59,lower (lowest usable competitor books.toscrape.com (sandbox) at 56.88)

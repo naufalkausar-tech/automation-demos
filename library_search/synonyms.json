@@ -1,0 +1,31 @@
+{
+  "_comment": "Editable. Each group lists words that mean the same topic; a query containing any of them also searches the others (at half weight). Arabic spelling variants (hamza, ta marbuta, diacritics) are handled automatically, so one spelling per word is enough. Reload with POST /api/reload.",
+  "groups": [
+    ["تنمية ذاتية", "تطوير الذات", "تنمية بشرية", "self-help", "self improvement", "personal development"],
+    ["تاريخ", "history", "historical"],
+    ["رواية", "روايات", "novel", "fiction"],
+    ["شعر", "ديوان", "قصائد", "poetry", "poems", "epic"],
+    ["فلسفة", "philosophy", "stoic"],
+    ["علوم", "science", "physics", "biology"],
+    ["طب", "صحة", "medicine", "medical", "health"],
+    ["رحلات", "رحلة", "travel", "travels", "journey"],
+    ["أطفال", "قصص أطفال", "children", "kids"],
+    ["سياسة", "السلطة", "politics", "power", "rulers"],
+    ["اقتصاد", "ثروة", "economics", "money", "wealth", "trade"],
+    ["دين", "religion", "spirituality"],
+    ["لغة", "نحو", "معجم", "language", "grammar", "dictionary"],
+    ["سيرة ذاتية", "مذكرات", "biography", "autobiography", "memoir"],
+    ["خيال علمي", "science fiction", "sci-fi"],
+    ["مغامرات", "مغامرة", "adventure"],
+    ["حرب", "استراتيجية", "war", "strategy", "military"],
+    ["حب", "love", "romance"],
+    ["رعب", "horror", "vampire"],
+    ["بوليسية", "جريمة", "detective", "crime", "mystery"],
+    ["حكايات", "قصص شعبية", "folk tales", "fables"],
+    ["ابن خلدون", "ibn khaldun"],
+    ["ابن سينا", "ibn sina", "avicenna"],
+    ["ابن رشد", "ibn rushd", "averroes"],
+    ["جبران", "gibran"],
+    ["ألف ليلة وليلة", "arabian nights", "thousand and one nights"]
+  ]
+}
